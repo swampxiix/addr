@@ -26,6 +26,7 @@ class Template (Page):
             wr('<div id="header">')
             wr('<span class="button"><a href="Main" title="Address Book"><i class="fa fa-home"></i></a></span>')
             wr('<span class="button"><a href="Form" title="Add New Contact"><i class="fa fa-plus"></i><i class="fa fa-user"></i></a></span>')
+            wr('<span class="button"><a href="Xmas" title="Xmas Lists"><i class="fa fa-tree"></i></a></span>')
 
             contacts = get_all_contacts()
             sns = contacts.keys()
@@ -37,6 +38,8 @@ class Template (Page):
                     snls.append(snl)
             activelets = self.navLets(snls)
             wr(activelets)
+
+            wr('<span class="button"><a href="Archived" title="Archived"><i class="fa fa-archive"></i></a></span>')
 
 
             wr('<div class="flr"><span class="button"><a href="Logout" title="Log out"><i class="fa fa-sign-out"></i></a></span></div>')

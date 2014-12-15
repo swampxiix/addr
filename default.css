@@ -37,8 +37,8 @@ td {
 
 .let {
     font-size: 10pt;
-    padding-right: 4px;
-    padding-left: 4px;
+    padding-right: 3px;
+    padding-left: 3px;
     }
 
 .botnav {
@@ -48,9 +48,6 @@ td {
     }
 
 .button {
-    display: block;
-    float: left;
-    font-size: 12pt;
     padding: 10px;
     }
 

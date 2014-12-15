@@ -5,8 +5,15 @@ class View(Template):
 
     def writeContent(self):
         wr = self.writeln
-        cid = self.request().fields().get('cid')
-        pick = get_one_contact(cid)
+        qs = self.request().fields()
+        cid = qs.get('cid')
+        from_archive = qs.get('archived')
+
+        if from_archive:
+            pick = get_one_contact(cid, archived=True)
+        else:
+            pick = get_one_contact(cid)
+        
 
         lastfirst = '%s %s' % (pick.get('fn'), pick.get('sn'))
 
@@ -26,6 +33,10 @@ class View(Template):
             wr('<br />%s' % (pick.get('phone')))
         wr('</P>')
 
+        if pick.get('xmas') == 'yes':
+            wr('<P><i class="gray fa fa-tree"></i> Supposed to get Xmas card.</P>')
+
+
         wr('<P>')
         wr('Email: <a href="mailto:%s">%s</a>' % (pick.get('email'), pick.get('email')))
         wr('</P>')
@@ -35,4 +46,5 @@ class View(Template):
             wr(pick.get('notes'))
             wr('</P>')
 
-        wr('<P>Updated: %s</P>' % (get_mod(cid)))
+        if not from_archive:
+            wr('<P>Updated: %s</P>' % (get_mod(cid)))

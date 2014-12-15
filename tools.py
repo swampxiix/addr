@@ -4,6 +4,7 @@ states = {'Alabama': 'AL', 'Alaska': 'AK', 'Arizona': 'AZ', 'Arkansas': 'AR', 'C
 basedir = '/usr/local/wwrun/Addresses'
 CDIR = os.path.join(basedir, 'contacts')
 ARCH = os.path.join(basedir, 'archive')
+XDIR = os.path.join(basedir, 'xmas')
 AUTHFILE = os.path.join(basedir, 'users.auth')
 
 def text(name, value='', size=25, max=40) :
@@ -43,8 +44,10 @@ def get_mod(cid):
     fp = os.path.join(CDIR, cid)
     return time.strftime('%Y-%b-%d', time.localtime(os.path.getmtime(fp)))
 
-def get_all_contacts():
+def get_all_contacts(archived=False):
     recs = glob.glob(os.path.join(CDIR,'*'))
+    if archived:
+        recs = glob.glob(os.path.join(ARCH,'*'))
     contacts = {}
     for record in recs:
         pick = readPick(record)
@@ -52,11 +55,38 @@ def get_all_contacts():
         contacts[name] = pick
     return contacts
 
-def get_one_contact(cid):
-    return readPick(os.path.join(CDIR, cid))
+def get_one_contact(cid, archived=False):
+    fp = os.path.join(CDIR, cid)
+    if archived:
+        fp = os.path.join(ARCH, cid)
+    return readPick(fp)
 
 def archive_contact(cid):
     oldfile = os.path.join(CDIR, cid)
     newfile = os.path.join(ARCH, cid)
     shutil.move(oldfile, newfile)
+
+######################################################
+# Xmas List Stuff
+
+def get_xmas_by_year (yr):
+    yr = str(yr)
+    yrfile = os.path.join(XDIR, yr)
+    if os.path.exists(yrfile):
+        return readPick(yrfile)
+    else:
+        return []
+
+def toggle_card_recipient (yr, cid):
+    year_list = get_xmas_by_year(yr)
+    if cid in year_list:
+        del year_list[year_list.index(cid)]
+    else:
+        year_list.append(cid)
+    fn = os.path.join(XDIR, yr)
+    file = open(fn, 'wb')
+    cPickle.dump(year_list, file)
+    file.close()
+
+
 
