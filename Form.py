@@ -1,8 +1,7 @@
 from Template import Template
-from tools import readPick, CDIR, text
-import os.path
+from tools import text, get_one_contact
 
-class Form(Template):
+class Form (Template):
 
     def writeContent(self):
         wr = self.writeln
@@ -13,7 +12,7 @@ class Form(Template):
         if qs.get('edit', None) and qs.get('cid', None):
             editMode = 1
             cid = qs.get('cid')
-            pick = readPick(os.path.join(CDIR, cid))
+            pick = get_one_contact(cid)
 
         a = 'Add'
         if editMode: a = 'Edit'
@@ -100,6 +99,32 @@ class Form(Template):
         else:
             wr(text('guest'))
         wr('<small>(leave blank if none)</small>')
+        wr('</td>')
+        wr('</tr>')
+
+        ######################################################
+        # Xmas
+        xmas = False
+        if editMode:
+            if pick.get('xmas') == 'yes':
+                xmas = True
+        wr('<tr><td>Send Xmas Card?</td><td>')
+        wr('<label for="xy"><input type="radio" name="xmas" value="yes" id="xy"')
+        if xmas:
+            wr(' CHECKED')
+        wr('> Yes</label>')
+        wr('<label for="xn"><input type="radio" name="xmas" value="no" id="xn"')
+        if not xmas:
+            wr(' CHECKED')
+        wr('> No</label>')
+
+        ######################################################
+        # Notes
+        wr('<tr><td>Notes:</td><td>')
+        wr('<textarea name="notes" cols="40" rows="5">')
+        if editMode:
+            wr(pick.get('notes'))
+        wr('</textarea>')
         wr('</td>')
         wr('</tr>')
 

@@ -1,58 +1,44 @@
 body {
 	margin: 15px;
-    background: #CCC;
-    font-family: "Georgia", "Times New Roman", "Times", serif;
-    font-size: 11pt;
-    }
-A 			{ color: #356; text-decoration: underline; }
-A:link		{ color: #356; text-decoration: underline; }
-A:visited	{ color: #356; text-decoration: underline; }
-A:active	{ color: #F60; text-decoration: underline; }
-A:hover		{ color: #F60; text-decoration: underline; }
-
-
-tr {
-    background-color: #FFF;
-    }
-
-th {
-    text-align: left;
+    background: #FFFFFF;
     font-family: "Verdana", "Helvetica", "Arial", sans-serif;
-    font-weight: bold;
-    background-color: #CCC;
+    font-size: 12pt;
+    }
+A 			{ color: #336666; text-decoration: underline; }
+A:link		{ color: #336666; text-decoration: underline; }
+A:visited	{ color: #336666; text-decoration: underline; }
+A:active	{ color: #FF9900; text-decoration: underline; }
+A:hover		{ color: #FF9900; text-decoration: underline; }
+
+
+#header {
+    background: #EEEEEE;
+    border-bottom: 1px solid #999999;
+    height: 40px;
+    line-height: 33px;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    }
+
+#content {
+    margin-top: 45px;
+    padding-left: 10px;
+    }
+
+h2 {
+    margin-top: 55px;
     }
 
 td {
-    font-family: "Verdana", "Helvetica", "Arial", sans-serif;
-    font-size: 11pt;
-    padding: 2px;
-    }
-
-.header {
-    background-color: #134;
-    font-family: "Verdana", "Helvetica", "Arial", sans-serif;
-    color: #FFF;
-    padding: 10px 0px;
-    }
-    .header a {
-        color: #FFF;
-        }
-
-.content {
-    font-size: 11pt;
-    padding: 5px;
+    padding: 7px;
     }
 
 .let {
-    padding-right: 5px;
-    padding-left: 5px;
-    }
-
-.lets {
-    text-align: center;
-    font-size: 9pt;
-    padding-top: 15px;
-    border-bottom: 1px solid #CCC;
+    font-size: 10pt;
+    padding-right: 4px;
+    padding-left: 4px;
     }
 
 .botnav {
@@ -64,22 +50,26 @@ td {
 .button {
     display: block;
     float: left;
-    font-size: 9pt;
-    margin-left: 10px;
+    font-size: 12pt;
+    padding: 10px;
     }
-    .button a,
-    .button a:link,
-    .button a:visited {
-        background-color: #689;
-        border: 1px solid #CCC;
-        padding: 4px;
-        text-decoration: none;
-        }
-    .button a:active,
-    .button a:hover {
-        background-color: #9BC;
-        border: 1px solid #FFF;
-        padding: 4px;
-        text-decoration: none;
-        }
 
+.gray {
+    color: #999999;
+    }
+
+.green {
+    color: #009900;
+    }
+
+.orange {
+    color: #FF9933;
+    }
+
+.red {
+    color: #FF6666;
+    }
+
+.flr {
+    float: right;
+    }
