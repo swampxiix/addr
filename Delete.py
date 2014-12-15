@@ -1,13 +1,12 @@
 from Template import Template
-from tools import readPick, CDIR
-import os.path
+from tools import get_one_contact
 
 class Delete(Template):
 
     def writeContent(self):
         wr = self.writeln
         cid = self.request().fields().get('cid')
-        pick = readPick(os.path.join(CDIR, cid))
+        pick = get_one_contact(cid)
         name = '%s %s' % (pick.get('fn'), pick.get('sn'))
         wr('<h2>Delete %s?</h2>' % (name))
         wr('<div style="margin-top: 12px;">')

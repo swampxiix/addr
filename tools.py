@@ -1,10 +1,10 @@
-import cPickle, os.path, sha, time, glob
+import cPickle, os.path, sha, time, glob, shutil
 
 states = {'Alabama': 'AL', 'Alaska': 'AK', 'Arizona': 'AZ', 'Arkansas': 'AR', 'California': 'CA', 'Colorado': 'CO', 'Connecticut': 'CT', 'Delaware': 'DE', 'District of Columbia': 'DC', 'Florida': 'FL', 'Georgia': 'GA', 'Hawaii': 'HI', 'Idaho': 'ID', 'Illinois': 'IL', 'Indiana': 'IN', 'Iowa': 'IA', 'Kansas': 'KS', 'Kentucky': 'KY', 'Louisiana': 'LA', 'Maine': 'ME', 'Maryland': 'MD', 'Massachusetts': 'MA', 'Michigan': 'MI', 'Minnesota': 'MN', 'Mississippi': 'MS', 'Missouri': 'MO', 'Montana': 'MT', 'Nebraska': 'NE', 'Nevada': 'NV', 'New Hampshire': 'NH', 'New Jersey': 'NJ', 'New Mexico': 'NM', 'New York': 'NY', 'North Carolina': 'NC', 'North Dakota': 'ND', 'Ohio': 'OH', 'Oklahoma': 'OK', 'Oregon': 'OR', 'Pennsylvania': 'PA', 'Rhode Island': 'RI', 'South Carolina': 'SC', 'South Dakota': 'SD', 'Tennessee': 'TN', 'Texas': 'TX', 'Utah': 'UT', 'Vermont': 'VT', 'Virginia': 'VA', 'Washington': 'WA', 'West Virginia': 'WV', 'Wisconsin': 'WI', 'Wyoming': 'WY',}
 basedir = '/usr/local/wwrun/Addresses'
 CDIR = os.path.join(basedir, 'contacts')
+ARCH = os.path.join(basedir, 'archive')
 AUTHFILE = os.path.join(basedir, 'users.auth')
-
 
 def text(name, value='', size=25, max=40) :
     return '<input type="text" name="%s" value="%s" size="%s" maxlength="%s">' % (name, value, size, max)
@@ -55,6 +55,8 @@ def get_all_contacts():
 def get_one_contact(cid):
     return readPick(os.path.join(CDIR, cid))
 
-
-
+def archive_contact(cid):
+    oldfile = os.path.join(CDIR, cid)
+    newfile = os.path.join(ARCH, cid)
+    shutil.move(oldfile, newfile)
 

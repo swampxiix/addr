@@ -16,6 +16,7 @@ class View(Template):
             wr(' &amp; %s' % (pick.get('guest')))
         wr('</b>')
         wr('&nbsp;&nbsp;<a href="./Form?edit=1&cid=%s"><i class="gray fa fa-pencil" title="Edit"></i></a>' % (cid))
+        wr('&nbsp;&nbsp;<a href="./Archive?cid=%s"><i class="gray fa fa-archive" title="Archive"></i></a>' % (cid))
         wr('&nbsp;&nbsp;<a href="./Delete?cid=%s"><i class="gray fa fa-remove" title="Delete"></i></a>' % (cid))
 
         wr('<br />')

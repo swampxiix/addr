@@ -15,7 +15,7 @@ class Template (Page):
         l = ''
         for char in string.ascii_uppercase:
             if char in snls:
-                l = l + '<span class="let"><a href="#%s">%s</a></span>' % (char, char)
+                l = l + '<span class="let"><a href="./Main#%s">%s</a></span>' % (char, char)
             else:
                 l = l + '<span class="let gray">%s</span>' % (char)
         return l
